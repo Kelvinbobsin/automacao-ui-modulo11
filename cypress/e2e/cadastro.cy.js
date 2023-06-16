@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 describe('Funcionalidade cadastro', () => {
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/minha-conta/')
+        cy.visit('minha-conta')
     });
 
     it('Deve completar o cadastro com sucesso', () => {
@@ -28,11 +28,17 @@ describe('Funcionalidade cadastro', () => {
         
     });
 
-    it.only('Deve exibir mensagem de erro ao inserir endereço de email inválido', () => {
+    it('Deve exibir mensagem de erro ao inserir endereço de email inválido', () => {
         cy.get('#reg_email').type('kkkk@kkkk')
         cy.get('#reg_password').type('teste@teste')
         cy.get(':nth-child(4) > .button').click()
 
         cy.get('.woocommerce-error').should('contain' , 'Erro: Informe um endereço de e-mail válido.')
+    });
+
+    it.only('Deve completar o cadastro com sucesso usando comandos customizados', () => {
+        let emailFaker2 = faker.internet.email()
+        cy.cadastro(emailFaker2, 'teste@teste.com', 'kelvin', 'bobsin')
+        cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
     });
 });
