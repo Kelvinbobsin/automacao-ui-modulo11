@@ -10,8 +10,8 @@ Instalar o cypress (npm install cypress@13.6.0);
 
 Abrir o exemplo do cypress (npx cypress open);
 
-# Automatizar as Features:
+## Automatizar as Features:
 
-Login
-Cadastro
-Produtos
+Login;
+Cadastro;
+Produtos;
